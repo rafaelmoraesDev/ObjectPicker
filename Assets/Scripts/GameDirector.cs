@@ -15,7 +15,6 @@ public class GameDirector : MonoBehaviour
     private Vector3 endPosition;
     private BlackOut blackOut;
 
-
     private void Start()
     {
         this.player = GameObject.FindGameObjectWithTag("Player");

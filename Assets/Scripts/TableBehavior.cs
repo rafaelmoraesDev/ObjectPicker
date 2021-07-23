@@ -34,6 +34,5 @@ public class TableBehavior : MonoBehaviour
             int score = target.gameObject.GetComponent<ObjectBehavior>().Score;
             this.scoreSet.SetUpScore(score);
         }
-
     }
 }

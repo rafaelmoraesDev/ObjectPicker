@@ -6,11 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     public CharacterController Controller;
     public float Speed = 10f;
-    private void Start()
-    {
-        //Cursor.lockState = CursorLockMode.Locked;
-    }
-
+    
     private void Update()
     {
         float x = Input.GetAxis("Horizontal");

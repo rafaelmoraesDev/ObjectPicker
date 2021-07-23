@@ -10,11 +10,6 @@ public class Door : MonoBehaviour
     [SerializeField] private bool facedLeft;
     public bool isOpen;
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         Quaternion qRotation = transform.localRotation;
@@ -24,7 +19,5 @@ public class Door : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(qRotation, newQtrn, Time.deltaTime * this.speed);
 
     }
-
-
 
 }

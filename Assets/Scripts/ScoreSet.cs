@@ -17,7 +17,6 @@ public class ScoreSet : MonoBehaviour
 
         if (this.score == 60)
         {
-            print("acabou");
             this.finishGame.Invoke();
 
         }

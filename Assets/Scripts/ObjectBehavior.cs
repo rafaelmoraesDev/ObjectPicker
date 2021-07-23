@@ -39,7 +39,5 @@ public class ObjectBehavior : MonoBehaviour
     {
         this.outline.enabled = false;
         this.Interactable = false;
-    }
-
-    
+    }    
 }

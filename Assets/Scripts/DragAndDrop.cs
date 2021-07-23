@@ -38,7 +38,6 @@ public class DragAndDrop : MonoBehaviour
                         this.selected.GetComponent<Rigidbody>().isKinematic = true;
                         this.target = this.hit.collider.transform;
                         this.screenPos = this.cam.WorldToScreenPoint(this.target.position);
-                        //Vector3 aux = new Vector3(Input.mousePosition.x, Input.mousePosition.y, this.screenPos.z);
                         Vector3 aux = new Vector3(this.screenPos.x, this.screenPos.y, this.screenPos.z);
                         this.offset = this.target.position - this.cam.ScreenToWorldPoint(aux);
                         this.isDrag = true;
@@ -57,7 +56,6 @@ public class DragAndDrop : MonoBehaviour
         {
             Vector3 currentScreenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, this.screenPos.z);
             Vector3 currentPos = this.cam.ScreenToWorldPoint(currentScreenPos) + this.offset;
-            //this.target.position = currentPos;
             this.target.position = Vector3.Lerp(this.target.position, currentPos, 10 * Time.deltaTime);
         }
     }

@@ -30,7 +30,6 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(this.xRotation, 0f, 0f);
         this.PlayerBody.Rotate(Vector3.up * mouseX);
-
     }
 
     public void LookToTable()
