@@ -12,41 +12,41 @@ public class BlackOut : MonoBehaviour
     [SerializeField] private Button restartButton;
     private void Awake()
     {
-        this.image = GetComponent<Image>();
-        this.playerMoveScript = FindObjectOfType<PlayerMove>();
-        this.mouseLookScript = FindObjectOfType<MouseLook>();
-        this.playerMoveScript.enabled = false;
-        this.mouseLookScript.enabled = false;
+       image = GetComponent<Image>();
+       playerMoveScript = FindObjectOfType<PlayerMove>();
+       mouseLookScript = FindObjectOfType<MouseLook>();
+       playerMoveScript.enabled = false;
+       mouseLookScript.enabled = false;
     }
 
     private void Start()
     {
-        this.image.canvasRenderer.SetAlpha(1.0f);
-        this.FadeOUt();
+       image.canvasRenderer.SetAlpha(1.0f);
+       FadeOUt();
     }
     private void FadeOUt()
     {
-        this.image.CrossFadeAlpha(0f, this.timeToFinish, false);
-        this.StartCoroutine(SetMovementPlayerEnabled());
+       image.CrossFadeAlpha(0f,timeToFinish, false);
+       StartCoroutine(SetMovementPlayerEnabled());
     }
 
     public void FadeIn()
     {
-        this.image.CrossFadeAlpha(1f, this.timeToFinish, false);
+       image.CrossFadeAlpha(1f,timeToFinish, false);
         StartCoroutine(SetButtonRestartEnable());
     }
 
     IEnumerator SetMovementPlayerEnabled()
     {
-        yield return new WaitForSeconds(this.timeToFinish);
-        this.playerMoveScript.enabled = true;
-        this.mouseLookScript.enabled = true;
+        yield return new WaitForSeconds(timeToFinish);
+       playerMoveScript.enabled = true;
+       mouseLookScript.enabled = true;
     }
 
     IEnumerator SetButtonRestartEnable()
     {
-        yield return new WaitForSeconds(this.timeToFinish);
-        this.restartButton.gameObject.SetActive(true);
+        yield return new WaitForSeconds(timeToFinish);
+       restartButton.gameObject.SetActive(true);
     }
 
 }

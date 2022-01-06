@@ -16,47 +16,47 @@ public class DragAndDrop : MonoBehaviour
 
     private void Start()
     {
-        this.isDrag = false;
-        this.cam = Camera.main;
-        this.allTargets = GameObject.FindGameObjectsWithTag("Selectable");
+        isDrag = false;
+        cam = Camera.main;
+        allTargets = GameObject.FindGameObjectsWithTag("Selectable");
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            this.ray = this.cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(this.ray.origin, this.ray.direction, out this.hit))
+            ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray.origin, ray.direction, out hit))
             {
-                foreach (var obj in this.allTargets)
+                foreach (var obj in allTargets)
                 {
                     bool interactable = obj.GetComponent<ObjectBehavior>().Interactable;
 
-                    if (this.hit.collider.name == obj.name && interactable)
+                    if (hit.collider.name == obj.name && interactable)
                     {
-                        this.selected = obj;
-                        this.selected.GetComponent<Rigidbody>().isKinematic = true;
-                        this.target = this.hit.collider.transform;
-                        this.screenPos = this.cam.WorldToScreenPoint(this.target.position);
-                        Vector3 aux = new Vector3(this.screenPos.x, this.screenPos.y, this.screenPos.z);
-                        this.offset = this.target.position - this.cam.ScreenToWorldPoint(aux);
-                        this.isDrag = true;
+                        selected = obj;
+                        selected.GetComponent<Rigidbody>().isKinematic = true;
+                        target = hit.collider.transform;
+                        screenPos = cam.WorldToScreenPoint(target.position);
+                        Vector3 aux = new Vector3(screenPos.x, screenPos.y, screenPos.z);
+                        offset = target.position - cam.ScreenToWorldPoint(aux);
+                        isDrag = true;
                     }
                 }
             }
 
         }
-        else if (Input.GetMouseButtonUp(0) && this.isDrag)
+        else if (Input.GetMouseButtonUp(0) && isDrag)
         {
-            this.selected.GetComponent<Rigidbody>().isKinematic = false;
-            this.isDrag = false;
-            this.selected = null;
+            selected.GetComponent<Rigidbody>().isKinematic = false;
+            isDrag = false;
+            selected = null;
         }
-        else if (this.isDrag)
+        else if (isDrag)
         {
-            Vector3 currentScreenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, this.screenPos.z);
-            Vector3 currentPos = this.cam.ScreenToWorldPoint(currentScreenPos) + this.offset;
-            this.target.position = Vector3.Lerp(this.target.position, currentPos, 10 * Time.deltaTime);
+            Vector3 currentScreenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPos.z);
+            Vector3 currentPos = cam.ScreenToWorldPoint(currentScreenPos) + offset;
+            target.position = Vector3.Lerp(target.position, currentPos, 10 * Time.deltaTime);
         }
     }
 

@@ -15,9 +15,9 @@ public class MouseCursor : MonoBehaviour
 
     private void Update()
     {
-        if (this.gameDirector.IsFinished)
+        if (gameDirector.IsFinished)
         {
-            this.crosshair.gameObject.SetActive(false);
+            crosshair.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
         }
     }

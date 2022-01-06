@@ -12,13 +12,12 @@ public class ScoreSet : MonoBehaviour
 
     public void SetUpScore(int elementScore)
     {
-        this.score = this.score + elementScore;
-        this.scoreText.text = this.score.ToString();
+        score = score + elementScore;
+        scoreText.text = score.ToString();
 
-        if (this.score == 60)
+        if (score == 60)
         {
-            this.finishGame.Invoke();
-
+            finishGame.Invoke();
         }
     }
 }

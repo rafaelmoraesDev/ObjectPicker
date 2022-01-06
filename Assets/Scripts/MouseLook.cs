@@ -15,26 +15,26 @@ public class MouseLook : MonoBehaviour
 
     private void Start()
     {
-        this.endPosition = GameObject.FindGameObjectWithTag("Table").transform.position;
+        endPosition = GameObject.FindGameObjectWithTag("Table").transform.position;
     }
 
     private void Update()
     {
-        this.transform.LookAt(this.table.transform);
+        transform.LookAt(this.table.transform);
 
-        float mouseX = Input.GetAxis("Mouse X") * this.MouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * this.MouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * MouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * MouseSensitivity * Time.deltaTime;
 
-        this.xRotation -= mouseY;
-        this.xRotation = Mathf.Clamp(this.xRotation, -90f, 90f);
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(this.xRotation, 0f, 0f);
-        this.PlayerBody.Rotate(Vector3.up * mouseX);
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        PlayerBody.Rotate(Vector3.up * mouseX);
     }
 
     public void LookToTable()
     {
-        Vector3 interpolatedPosition = Vector3.Lerp(this.transform.position, this.endPosition, 2 * Time.deltaTime);
+        Vector3 interpolatedPosition = Vector3.Lerp(transform.position, endPosition, 2 * Time.deltaTime);
         Camera.main.transform.position = interpolatedPosition;
     }
 }

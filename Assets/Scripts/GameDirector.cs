@@ -17,37 +17,37 @@ public class GameDirector : MonoBehaviour
 
     private void Start()
     {
-        this.player = GameObject.FindGameObjectWithTag("Player");
-        this.cam = player.GetComponentInChildren<Camera>();
-        this.endPosition = new Vector3(23f, 2.4f, 20.42f);
-        this.blackOut = FindObjectOfType<BlackOut>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        cam = player.GetComponentInChildren<Camera>();
+        endPosition = new Vector3(23f, 2.4f, 20.42f);
+        blackOut = FindObjectOfType<BlackOut>();
     }
 
     private void FixedUpdate()
     {
-        if (this.IsFinished)
+        if (IsFinished)
         {
-            StartCoroutine(this.SetPositionAndLookPointCamera());
+            StartCoroutine(SetPositionAndLookPointCamera());
         }
     }
 
     public void SetUpEndCamera()
     {
-        this.DisableScripts();
-        this.IsFinished = true;
+        DisableScripts();
+        IsFinished = true;
     }
 
     private void DisableScripts()
     {
-        this.player.GetComponent<PlayerMove>().enabled = false;
-        this.cam.GetComponent<MouseLook>().enabled = false;
+        player.GetComponent<PlayerMove>().enabled = false;
+        cam.GetComponent<MouseLook>().enabled = false;
     }
 
     IEnumerator SetPositionAndLookPointCamera()
     {
-        this.startPosition = this.player.transform.position;
-        this.player.transform.position = Vector3.Lerp(this.startPosition, this.endPosition, this.speed * Time.deltaTime);
-        this.player.transform.LookAt(this.table.transform);
+        startPosition = player.transform.position;
+        player.transform.position = Vector3.Lerp(startPosition, endPosition, speed * Time.deltaTime);
+        player.transform.LookAt(table.transform);
         yield return new WaitForSeconds(2.5f);
         blackOut.FadeIn();
     }

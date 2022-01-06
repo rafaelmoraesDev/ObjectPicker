@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class DoorBehavior : MonoBehaviour
 {
-    private Door door;
     [SerializeField] private GameObject push;
+    private Door door;
     private GameObject player;
     private Outline outline;
     private float distanceToActivate;
 
     private void Awake()
     {
-        this.player = GameObject.FindGameObjectWithTag("Player");
-        this.door = GetComponentInChildren<Door>();
-        this.outline = GetComponentInChildren<Outline>();
-        this.outline.enabled = false;
+        player = GameObject.FindGameObjectWithTag("Player");
+        door = GetComponentInChildren<Door>();
+        outline = GetComponentInChildren<Outline>();
+        outline.enabled = false;
     }
 
     void Update()
     {
-        this.distanceToActivate = Vector3.Distance(this.push.transform.position, this.player.transform.position);
+        distanceToActivate = Vector3.Distance(push.transform.position, player.transform.position);
 
-        if (this.distanceToActivate <= 1.5f)
+        if (distanceToActivate <= 1.5f)
         {
-            this.outline.enabled = true;
+            outline.enabled = true;
 
             if (Input.GetButtonDown("Fire1"))
             {
@@ -33,12 +33,12 @@ public class DoorBehavior : MonoBehaviour
         }
         else
         {
-            this.outline.enabled = false;
+            outline.enabled = false;
         }
     }
 
     private void OpenOrCloseDoor()
     {
-        this.door.isOpen = !this.door.isOpen;
+        door.isOpen = !door.isOpen;
     }
 }

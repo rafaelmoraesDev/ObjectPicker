@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class TableBehavior : MonoBehaviour
 {
     private ScoreSet scoreSet;
     private void Start()
     {
-        this.scoreSet = GameObject.FindObjectOfType<ScoreSet>();
+        scoreSet = GameObject.FindObjectOfType<ScoreSet>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -17,13 +16,13 @@ public class TableBehavior : MonoBehaviour
         bool interactable = target.GetComponent<ObjectBehavior>().Interactable;
         if (!interactable)
         {
-            this.SetOffBehaviors(target);
+            SetOffBehaviors(target);
         }
     }
     private void SetOffBehaviors(GameObject target)
     {
         target.GetComponent<Outline>().enabled = false;
-        this.SetNewScore(target);
+        SetNewScore(target);
         target.GetComponent<ObjectBehavior>().Dispensed = true;
     }
 
@@ -32,7 +31,7 @@ public class TableBehavior : MonoBehaviour
         if (!target.GetComponent<ObjectBehavior>().Dispensed)
         {
             int score = target.gameObject.GetComponent<ObjectBehavior>().Score;
-            this.scoreSet.SetUpScore(score);
+            scoreSet.SetUpScore(score);
         }
     }
 }

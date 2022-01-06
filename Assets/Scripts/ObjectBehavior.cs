@@ -13,31 +13,31 @@ public class ObjectBehavior : MonoBehaviour
 
     private void Awake()
     {
-        this.player = GameObject.FindGameObjectWithTag("Player");
-        this.outline = this.GetComponent<Outline>();
-        this.outline.enabled = false;
+        player = GameObject.FindGameObjectWithTag("Player");
+        outline = GetComponent<Outline>();
+        outline.enabled = false;
     }
 
     private void Update()
     {
-        if (!this.Dispensed)
+        if (!Dispensed)
         {
-            this.distanceToSetEnable = Vector3.Distance(this.transform.position, this.player.transform.position);
+            distanceToSetEnable = Vector3.Distance(transform.position, player.transform.position);
         }
     }
 
     private void OnMouseOver()
     {
-        if (this.distanceToSetEnable <= 2f && !Dispensed)
+        if (distanceToSetEnable <= 2f && !Dispensed)
         {
-            this.outline.enabled = true;
-            this.Interactable = true;
+            outline.enabled = true;
+            Interactable = true;
         }
     }
 
     private void OnMouseExit()
     {
-        this.outline.enabled = false;
-        this.Interactable = false;
+        outline.enabled = false;
+        Interactable = false;
     }    
 }

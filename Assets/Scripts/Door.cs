@@ -13,10 +13,10 @@ public class Door : MonoBehaviour
     private void Update()
     {
         Quaternion qRotation = transform.localRotation;
-        float Yvalue = this.closeValueY;
-        if (isOpen) Yvalue = this.openValueY;
+        float Yvalue = closeValueY;
+        if (isOpen) Yvalue = openValueY;
         Quaternion newQtrn = Quaternion.Euler(qRotation.eulerAngles.x, qRotation.eulerAngles.y, Yvalue);
-        transform.localRotation = Quaternion.Slerp(qRotation, newQtrn, Time.deltaTime * this.speed);
+        transform.localRotation = Quaternion.Slerp(qRotation, newQtrn, Time.deltaTime * speed);
 
     }
 
